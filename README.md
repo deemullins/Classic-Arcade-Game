@@ -2,7 +2,7 @@
 Add a number of entities to the game including the player characters and enemies to recreate the classic arcade game Frogger.
 
 ## Installation
-- Clone the GitHub Repository and run within your editor
+- Clone the GitHub Repository:
 
 ```html
 $ git clone https://github.com/deemullins/Classic-Arcade-Game.git
