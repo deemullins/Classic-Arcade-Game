@@ -21,7 +21,7 @@ $ git clone https://github.com/deemullins/Classic-Arcade-Game.git
 
 - You will try to have your player reach the other side of the game board without having any collisions with the enemy bugs. If the bug touches you, you will be reset to the beginning. 
 
-### Play here: 
+## Play here: 
 - https://deemullins.github.io/Classic-Arcade-Game/
 
 Good luck!
