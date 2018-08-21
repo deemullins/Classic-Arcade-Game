@@ -7,6 +7,8 @@ Add a number of entities to the game including the player characters and enemies
 ```html
 $ git clone https://github.com/deemullins/Classic-Arcade-Game.git
 ```
+- Unzip file.
+- Open `index.html` in your browser.
 
 ## Directions:
 
