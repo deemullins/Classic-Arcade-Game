@@ -1,11 +1,11 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+const Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
     this.y = y;
     this.speed = speed;
-
+    'use strict';
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -18,7 +18,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
-
+    'use strict';
     // enemies loop to left side when reaching canvas.width
     if (this.x >= 505) {
         this.x = 0;
@@ -37,7 +37,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 // Place the player object in a variable called player
-var Player = function(x, y, speed) {
+const Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -46,6 +46,7 @@ var Player = function(x, y, speed) {
 
 Player.prototype.update = function() {
 }
+
 
 // Draw the player on the screen
 // Display score
@@ -57,24 +58,24 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(keyPress) {
     if (keyPress == 'left') {
-        player.x -= player.speed;
+        this.x -= this.speed;
     }
     if (keyPress == 'up') {
-        player.y -= player.speed - 20;
+        this.y -= this.speed - 20;
     }
     if (keyPress == 'right') {
-        player.x += player.speed;
+        this.x += this.speed;
     }
     if (keyPress == 'down') {
-        player.y += player.speed - 20;
+        this.y += this.speed - 20;
     }
     console.log('keyPress is: ' + keyPress);
 };
 
 // Function to display player's score
-var displayScoreLevel = function(displayScore, displayLevel) {
-    var canvas = document.getElementsByTagName('canvas');
-    var firstCanvasTag = canvas[0];
+const displayScoreLevel = function(displayScore, displayLevel) {
+    let canvas = document.getElementsByTagName('canvas');
+    let firstCanvasTag = canvas[0];
 
     // add player score and level to div
     scoreLevelDiv.innerHTML = 'Score: ' + displayScore
@@ -82,17 +83,17 @@ var displayScoreLevel = function(displayScore, displayLevel) {
     document.body.insertBefore(scoreLevelDiv, firstCanvasTag[0]);
 };
 
-var collision = function(theEnemy) {
+const collision = function(theEnemy) {
     // check for collision between enemy and player
     if (
         player.y + 131 >= theEnemy.y + 90
         && player.x + 25 <= theEnemy.x + 88
         && player.y + 73 <= theEnemy.y + 135
         && player.x + 76 >= theEnemy.x + 11) {
-        console.log('collided');
+        alert('They got you! Try Again.');
         player.x = 202.5;
         player.y = 383;
-    }
+    };
 
     // check for player winning the game
     // if player wins, add 1 to the score and level
@@ -100,17 +101,16 @@ var collision = function(theEnemy) {
     if (player.y + 63 <= 0) {        
         player.x = 202.5;
         player.y = 383;
-        console.log('You made it!');
-
+        
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, 505, 171);
 
         score += 1;
         gameLevel += 1;
-        console.log('current score: ' + score + ', current level: ' + gameLevel);
+        
         increaseDifficulty(score);
-
-    }
+        alert('Congratulations! You made it! Current Score: ' + score + ', Current Level: ' + gameLevel);
+    };
 
     // prevent player from moving beyond boundaries
     if (player.y > 383 ) {
@@ -125,12 +125,12 @@ var collision = function(theEnemy) {
 };
 
 // Increase number of enemies based on level
-var increaseDifficulty = function(numEnemies) {
+const increaseDifficulty = function(numEnemies) {
     // reset enemies
     allEnemies.length = 0;
 
     for (i = 0; i <= numEnemies; i++) {
-        var enemy = new Enemy(0, Math.random() * 184 + 50, Math.random() * 256);
+        let enemy = new Enemy(0, Math.random() * 184 + 50, Math.random() * 256);
         
         allEnemies.push(enemy);
     }
@@ -141,19 +141,19 @@ var increaseDifficulty = function(numEnemies) {
 // Place the player object in a variable called player
 // Enemy randomly placed vertically within section of canvas
 // Declare new score and gameLevel variables to store score and level
-var allEnemies = [];
-var player = new Player(202.5, 383, 50);
-var score = 0;
-var gameLevel = 1;
-var scoreLevelDiv = document.createElement('div');
-var enemy = new Enemy(0, Math.random() * 184 + 50, Math.random() * 256);
+let allEnemies = [];
+let player = new Player(202.5, 383, 50);
+let score = 0;
+let gameLevel = 1;
+let scoreLevelDiv = document.createElement('div');
+let enemy = new Enemy(0, Math.random() * 184 + 50, Math.random() * 256);
 
 allEnemies.push(enemy);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    let allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
